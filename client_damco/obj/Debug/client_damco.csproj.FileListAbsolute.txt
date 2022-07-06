@@ -1,0 +1,8 @@
+C:\Users\nguye\OneDrive\Desktop\Visual Studio\client_damco\client_damco\bin\Debug\client_damco.exe.config
+C:\Users\nguye\OneDrive\Desktop\Visual Studio\client_damco\client_damco\bin\Debug\client_damco.exe
+C:\Users\nguye\OneDrive\Desktop\Visual Studio\client_damco\client_damco\bin\Debug\client_damco.pdb
+C:\Users\nguye\OneDrive\Desktop\Visual Studio\client_damco\client_damco\obj\Debug\client_damco.csproj.AssemblyReference.cache
+C:\Users\nguye\OneDrive\Desktop\Visual Studio\client_damco\client_damco\obj\Debug\client_damco.csproj.SuggestedBindingRedirects.cache
+C:\Users\nguye\OneDrive\Desktop\Visual Studio\client_damco\client_damco\obj\Debug\client_damco.csproj.CoreCompileInputs.cache
+C:\Users\nguye\OneDrive\Desktop\Visual Studio\client_damco\client_damco\obj\Debug\client_damco.exe
+C:\Users\nguye\OneDrive\Desktop\Visual Studio\client_damco\client_damco\obj\Debug\client_damco.pdb

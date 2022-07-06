@@ -1,0 +1,35 @@
+<script>
+ function tableToExcel(table, name, filename) {
+        let uri = 'data:application/vnd.ms-excel;base64,', 
+        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><title></title><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>', 
+        base64 = function(s) { return window.btoa(decodeURIComponent(encodeURIComponent(s))) },         format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; })}
+        
+        if (!table.nodeType) table = document.getElementById(table)
+        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+
+        var link = document.createElement('a');
+        link.download = filename;
+        link.href = uri + base64(format(template, ctx));
+        link.click();
+}
+</script>
+<button type="button" width ="300px" height="250px" onclick="tableToExcel(table,table,'Repost INV number');">Export Excel File</button>
+</br>
+<table id="table" name ="table" border="1" cellpadding="30" align="center"  width="auto" height="auto" font-size="22px">
+<tr>
+<th>so_number</th><th>so_submission_date</th><th>so_estimated_delivery_date</th><th>so_reference</th><th>so_confirmation_number</th><th>so_status</th><th>consignee</th><th>shipper</th><th>office</th><th>transportation_mode</th><th>service_type</th><th>fob_point</th><th>po_number</th><th>skuItem</th><th>freight</th><th>carrier</th><th>letter_of_credit</th><th>export_license</th><th>vessel</th><th>voyage</th><th>ETD</th><th>place_of_delivery</th><th>place_of_discharge</th><th>place_of_loading</th><th>total_quantity</th><th>total_packages</th><th>total_gross_weight</th><th>total_measurement</th><th>Description</th><th>Issue INV</th>
+</tr>
+<tr><td>37618258</td><td>2022-07-04</td><td>2022-07-11</td><td></td><td>SGN5523497</td><td>CONFIRMED</td><td>NIKE EUROPEAN OPERATIONS [BENIKE2HQ]</td><td>DELTA GALIL VIETNAM CO [VNDELTAGALVDR]</td><td>MAERSK LOGISTICS & SERVICES VIETNAM [VNMCCHQ]</td><td></td><td>CFS</td><td>Ho Chi Minh City [TRM]</td><td>4508561548-00140</td><td>SX7679-010</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Ham [ AAE ]</td><td>Ham [ AAE ]</td><td>Ho Chi Minh City [TRM]</td><td> 4368</td><td> 91</td><td>749.84</td><td>6.03</td><td>91 Cartons of Equipment Division of goods, Qty: 4368 EA
+Buy Group: FIRST QUALITY, AFS: 01000
+Ship-to Plant: 1064, Customer: 0061584559
+Invoice#: 00
+PO-Item: 4508561548-140, Customer PO: 
+Material: SX7679-010, Name: U NK EVERYDAY LTWT NS 6PR-BAND, Gender/Age: ADULT UNISEX
+Standard Description: ADULT UNISEX FITNESS/WORKOUT KNIT NO SHOW SOCK, HSCode: 61159500
+Material Content: 66% Cotton, 32% Polyester, 2% Spandex,
+PO-Item: 4508561548-330, Customer PO: 
+Material: SX7679-100, Name: U NK EVERYDAY LTWT NS 6PR-BAND, Gender/Age: ADULT UNISEX
+Standard Description: ADULT UNISEX FITNESS/WORKOUT KNIT NO SHOW SOCK, HSCode: 61159500
+Material Content: 66% Cotton, 32% Polyester, 2% Spandex,</td><td>Missing INV number</td></tr>
+</table>
+
