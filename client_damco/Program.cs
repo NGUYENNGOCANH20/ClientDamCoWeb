@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.IO;
 using System.Data;
+using System.Runtime.InteropServices;
 
 namespace client_damco
 {
@@ -17,6 +18,7 @@ namespace client_damco
         static int iloldv = 6229;
         static void Main(string[] args)
         {
+
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpClientHandler hd = new HttpClientHandler();
             CookieContainer ck = new CookieContainer();
@@ -211,7 +213,7 @@ namespace client_damco
             string ulrPost = "";
             List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>();
             list.Add(new KeyValuePair<string, string>("ctl00$ContentPlaceHolder1$UsernameTextBox", "HHDELT"));
-            list.Add(new KeyValuePair<string, string>("ctl00$ContentPlaceHolder1$PasswordTextBox", "m0n9b8v7"));
+            list.Add(new KeyValuePair<string, string>("ctl00$ContentPlaceHolder1$PasswordTextBox", File.ReadAllText(Directory.GetCurrentDirectory()+"\\Pass.txt")));
             list.Add(new KeyValuePair<string, string>("ctl00$ContentPlaceHolder1$SubmitButton", "Sign in"));
             foreach (string item in tokenlogin.Split('<'))
             {
@@ -268,6 +270,23 @@ namespace client_damco
             req = client.SendAsync(mgs).Result;
             req.EnsureSuccessStatusCode();
             Console.WriteLine($"Login Status:[{req.StatusCode}]");
+        }
+
+        public class ConnectNetW
+        {
+            [Flags]
+            enum ConnectionInternetState : int
+            {
+                INTERNET_CONNECTION_MODEM = 0x1, INTERNET_CONNECTION_LAN = 0x2, INTERNET_CONNECTION_PROXY = 0x4, INTERNET_RAS_INSTALLED = 0x10, INTERNET_CONNECTION_OFFLINE = 0x20, INTERNET_CONNECTION_CONFIGURED = 0x40
+            }
+            [DllImport("wininet.dll", CharSet = CharSet.Auto)]
+            static extern bool InternetGetConnectedState(ref ConnectionInternetState lpdwFlags, int dwReserved);
+            public static bool IsConnectedToInternet()
+            {
+                ConnectionInternetState Description = 0;
+                bool conn = InternetGetConnectedState(ref Description, 0);
+                return conn;
+            }
         }
     }
 
